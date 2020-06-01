@@ -1,0 +1,327 @@
+<template>
+   <div class="wrapper theme-2-active navbar-top-light">
+        <!-- Top Menu Items -->
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="nav-wrap">
+                <div class="mobile-only-brand pull-left">
+                    <div class="nav-header pull-left">
+                        <div class="logo-wrap">
+                            <a href="#">
+                                <img class="brand-img" src="/dist/img/logo.png" alt="brand"/>
+                                <span class="brand-text"><img  src="/dist/img/brand.png" alt="brand"/></span>
+                            </a>
+                        </div>
+                    </div>  
+                    <a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"><i class="ti-align-left"></i></a>
+                    <a id="toggle_mobile_search" data-toggle="collapse" data-target="#search_form" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-search"></i></a>
+                    <a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="ti-more"></i></a>
+                    <form id="search_form" role="search" class="top-nav-search collapse pull-left">
+                        <div class="input-group">
+                            <input type="text" name="example-input1-group2" class="form-control" placeholder="Search">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn  btn-default"  data-target="#search_form" data-toggle="collapse" aria-label="Close" aria-expanded="true"><i class="zmdi zmdi-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div id="mobile_only_nav" class="mobile-only-nav pull-right">
+                    <ul class="nav navbar-right top-nav pull-right">
+                        
+                        <li class="dropdown auth-drp">
+                            <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img src="/dist/img/user.png" alt="user_auth" class="user-auth-img img-circle"/><span class="user-online-status"></span></a>
+                            <ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
+                                <li>
+                                    <a href="profile.html"><i class="zmdi zmdi-account"></i><span>Profile</span></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="zmdi zmdi-card"></i><span>my balance</span></a>
+                                </li>
+                                <li>
+                                    <a href="inbox.html"><i class="zmdi zmdi-email"></i><span>Inbox</span></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="zmdi zmdi-settings"></i><span>Settings</span></a>
+                                </li>
+                                <li class="divider"></li>
+                                <li class="sub-menu show-on-hover">
+                                    <a href="#" class="dropdown-toggle pr-0 level-2-drp"><i class="zmdi zmdi-check text-success"></i> available</a>
+                                    <ul class="dropdown-menu open-left-side">
+                                        <li>
+                                            <a href="#"><i class="zmdi zmdi-check text-success"></i><span>available</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="zmdi zmdi-circle-o text-warning"></i><span>busy</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="zmdi zmdi-minus-circle-outline text-danger"></i><span>offline</span></a>
+                                        </li>
+                                    </ul>   
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" @click="logout"><i class="zmdi zmdi-power"></i><span>Log Out</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>  
+            </div>
+        </nav>
+        <!-- /Top Menu Items -->
+        
+        <!-- Left Sidebar Menu -->
+        <div class="fixed-sidebar-left">
+            <ul class="nav navbar-nav side-nav nicescroll-bar">
+                <li class="navigation-header">
+                    <span>Main</span> 
+                    <hr/>
+                </li>
+                <li>
+                    <router-link :to="{ name: 'home' }"><div class="pull-left"><i class="ti-dashboard mr-20"></i><span class="right-nav-text">Dashboard</span></div><div class="clearfix"></div></router-link>
+                </li>
+                <li>
+                    <router-link :to="{ name: 'transaksi' }"><div class="pull-left"><i class="ti-shopping-cart mr-20"></i><span class="right-nav-text">Transaksi</span></div><div class="clearfix"></div></router-link>
+                </li>
+                <li>
+                    <router-link :to="{ name: 'chat' }"><div class="pull-left"><i class="ti-comment mr-20"></i><span class="right-nav-text">Chat</span></div><div class="clearfix"></div></router-link>
+                </li>
+                <li class="navigation-header mt-20">
+                    <span>Manajemen</span> 
+                    <hr/>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr"><div class="pull-left"><i class="ti-archive  mr-20"></i><span class="right-nav-text">Produk</span></div><div class="pull-right"><i class="ti-angle-down "></i></div><div class="clearfix"></div></a>
+                    <ul id="ui_dr" class="collapse collapse-level-1 two-col-list">
+                        <li>
+                            <router-link :to="{ name: 'kategori.data' }">Kategori</router-link>
+                        </li>
+                        <li>
+                            <router-link :to="{ name: 'barang.data' }">Barang</router-link>
+                        </li>
+                    </ul>
+                </li>
+                <li v-if="role !== '3'">
+                    <router-link :to="{ name: 'kios.data' }"><div class="pull-left"><i class="ti-dropbox mr-20"></i><span class="right-nav-text">Kios</span></div><div class="clearfix"></div></router-link>
+                </li>
+                <li v-if="role !== '3'">
+                    <router-link :to="{ name: 'konsumen.data' }"><div class="pull-left"><i class="ti-user mr-20"></i><span class="right-nav-text">Konsumen</span></div><div class="clearfix"></div></router-link>
+                </li>
+                <li v-if="role === '1'" class="navigation-header mt-20">
+                    <span>admin</span> 
+                    <hr/>
+                </li>
+                <li v-if="role === '1'">
+                    <router-link :to="{ name: 'admin.data' }"><div class="pull-left"><i class="ti-book mr-20"></i><span class="right-nav-text">administrator</span></div><div class="clearfix"></div></router-link>
+                </li>
+            </ul>
+        </div>
+        <!-- /Left Sidebar Menu -->
+        
+        
+         <!-- Main Content -->
+        <div class="page-wrapper">
+            <div class="container">
+                <!-- Title -->
+                <div class="row heading-bg">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                      <h5 class="txt-dark">chats</h5>
+                    </div>
+                    <!-- Breadcrumb -->
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                      <ol class="breadcrumb">
+                        <li><a href="index.html">Dashboard</a></li>
+                        <li><a href="#"><span>apps</span></a></li>
+                        <li class="active"><span>chats</span></li>
+                      </ol>
+                    </div>
+                    <!-- /Breadcrumb -->
+                </div>
+                <!-- /Title -->
+                
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default border-panel card-view pa-0">
+                            <div class="panel-wrapper collapse in">
+                                <div class="panel-body pa-0">
+                                    <div class="chat-cmplt-wrap chat-for-widgets-1">
+                                        <div class="chat-box-wrap">
+                                            <div>
+                                                <form role="search" class="chat-search">
+                                                    <div class="input-group">
+                                                        <input id="example-input1-group21" name="example-input1-group2" class="form-control" placeholder="Search" type="text">
+                                                        <span class="input-group-btn">
+                                                        <button type="button" class="btn  btn-default"><i class="zmdi zmdi-search"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </form>
+                                                <div class="chatapp-nicescroll-bar">
+                                                    <ul class="chat-list-wrap">
+                                                        <li class="chat-list">
+                                                            <div class="chat-body">
+                                                                <ListChatUser 
+                                                                    v-for="id in convoIds"
+                                                                    :conversation="conversations[id]"
+                                                                    :id="id"
+                                                                    :key="id"
+                                                                />
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="recent-chat-box-wrap">
+                                            <div class="recent-chat-wrap">
+                                                <div class="panel-heading ma-0 pt-15">
+                                                    <div class="goto-back">
+                                                        <a  id="goto_back_widget_1" href="javascript:void(0)" class="inline-block txt-grey">
+                                                            <i class="zmdi zmdi-account-add"></i>
+                                                        </a>    
+                                                        <span class="inline-block txt-dark">{{ getNama }}</span>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-wrapper collapse in">
+                                                    <div class="panel-body pa-0">
+                                                        <div class="chat-content">
+                                                            <ul class="chatapp-chat-nicescroll-bar pt-20">
+                                                                <ChatContainer
+                                                                    :conv="conversations[id]"
+                                                                 />
+                                                            </ul>
+                                                        </div>
+                                                        <div class="input-group">
+                                                            <input type="text" id="input_msg_send_chatapp" name="send-msg" class="input-msg-send form-control" placeholder="Type something" v-model="newMessageText" @keyup.enter="send">
+                                                            <div class="input-group-btn emojis">
+                                                                <div class="dropup">
+                                                                    <button type="button" class="btn  btn-default  dropdown-toggle" data-toggle="dropdown" ><i class="zmdi zmdi-mood"></i></button>
+                                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                                        <li><a href="javascript:void(0)">Action</a></li>
+                                                                        <li><a href="javascript:void(0)">Another action</a></li>
+                                                                        <li class="divider"></li>
+                                                                        <li><a href="javascript:void(0)">Separated link</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-group-btn attachment">
+                                                                <div class="fileupload btn  btn-default"><i class="zmdi zmdi-attachment-alt"></i>
+                                                                    <input type="file" class="upload">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Row -->
+
+            </div>
+            
+            <!-- Footer -->
+            <footer class="footer pl-30 pr-30">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>2020 &copy; G-Mart. All rights reserved.</p>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <p>Made in <u>Yogyakarta</u> by PT. Karyanto</p>
+                            <a href="https://linkedin.com/company/karyanto"><i class="fa fa-linkedin"></i></a>
+                            <a href="https://karyanto.com"><i class="fa fa-globe"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- /Footer -->
+            
+        </div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+</template>
+
+<!-- JAVASCRIPT SECTION -->
+<script>
+    import { mapState } from 'vuex'
+    import ListChatUser from '../components/ListChatUser.vue'
+    import ChatContainer from '../components/ChatContainer.vue'
+
+    export default {
+        data(){
+            return{
+                role: '',
+                nama: '',
+                newMessageText: '',
+                id: this.$route.params.id
+            }
+        },
+        components: {
+            ListChatUser,
+            ChatContainer
+        },
+        mounted(){
+            this.role = localStorage.getItem('role');
+            if(!this.$store.state.loaded){
+                this.$store.dispatch('users/get')
+                this.$store.dispatch('conversations/get')
+                this.$store.state.loaded = true
+            }
+        },
+        methods: {
+            logout() {
+                return new Promise((resolve, reject) => {
+                    localStorage.removeItem('token')
+                    resolve()
+                }).then(() => {
+                    
+                    this.$store.state.token = localStorage.getItem('token')
+                    this.$router.push('/login')
+                })
+            },
+            send () {
+                this.$store.dispatch('conversations/sendMessage', { 
+                    text: this.newMessageText, 
+                    created: Date.now(),
+                    conversationId: this.id,
+                    sender: this.$store.state.users.currentUser
+                })  
+            }
+        },
+        created () {
+            this.$store.state.db.collection('conversations').doc(this.id).onSnapshot(convo => {
+                let source = convo.metadata.hasPendingWrites ? 'Local' : 'Server'
+
+                if (convo && convo.data() && convo.data().messages) {
+                    convo.data().messages.forEach(message => this.$store.commit('conversations/ADD_MESSAGE', { 
+                            conversationId: this.id, message })
+                    )
+                }
+            })
+        },
+        computed: {
+            ...mapState({
+                conversations: state => state.conversations.all,
+                convoIds: state => state.conversations.allIds,
+                usersData: state => state.users.all
+            }),
+            getNama(){
+                if(this.conversations[this.id]){
+                    if(this.conversations[this.id].users[0] == this.$store.state.users.currentUser){
+                        return this.usersData[this.conversations[this.id].users[1]].nama
+                    }
+                    else if(this.conversations[this.id].users[1] == this.$store.state.users.currentUser){
+                        return this.usersData[this.conversations[this.id].users[0]].nama
+                    }
+                }
+            }
+        }
+    }
+</script>
