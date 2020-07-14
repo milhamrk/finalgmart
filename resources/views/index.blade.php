@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<title>G-Mart</title>
+	<title>KiosRakyat</title>
 	<meta name="description" content="G-Mart Dashboard by Karyanto" />
 	<meta name="keywords" content="gmart, dashboard, karyanto" />
 	<meta name="author" content="karyanto"/>

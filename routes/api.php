@@ -36,6 +36,7 @@ Route::group([['middleware' => ['auth:admin-api']],['middleware' => ['auth:kios-
 
 	Route::get('/kios','KiosController@all');
 	Route::get('/kota','KiosController@kota');
+	Route::get('/kotaadmin','KiosController@kotaAdmin');
 	Route::get('/kios/{id}','KiosController@show');
 	Route::get('/kiosAdmin/{id}','KiosController@adminUser');
 	Route::post('/kios','KiosController@store');

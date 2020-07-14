@@ -141,7 +141,6 @@
                                                     <th>Harga Jual</th>
                                                     <th>Status</th>
                                                     <th>Tanggal</th>
-                                                    <th>Pembayaran</th>
                                                     <th>Pengiriman</th>
                                                 </tr>
                                             </thead>
@@ -156,7 +155,6 @@
                                                     <th>Harga Jual</th>
                                                     <th>Status</th>
                                                     <th>Tanggal</th>
-                                                    <th>Pembayaran</th>
                                                     <th>Pengiriman</th>
                                                 </tr>
                                             </tfoot>
@@ -170,8 +168,7 @@
                                                     <td>{{t.subtotal_harga_beli}}</td>
                                                     <td>{{t.subtotal_harga}}</td>
                                                     <td>Selesai</td>
-                                                    <td>{{t.tanggal}}</td>
-                                                    <td>{{t.metode_bayar}}</td>
+                                                    <td>{{date(t.tanggal)}}</td>
                                                     <td>{{t.metode_kirim}}</td>
                                                 </tr>
                                             </tbody>
@@ -215,6 +212,8 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import $axios from '../api.js'
+import moment from 'moment'
+
 
 export default {
   data() {
@@ -238,15 +237,18 @@ export default {
         this.dt.destroy();
         this.$nextTick(() => {
           this.dt = $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    })
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            })
         });
       }
     },
   methods: {
+    date: function (date) {
+      return moment(date).format('DD MMMM YYYY');
+    },
     loadData() {
       $axios.get("http://localhost:8000/api/trx").then(response => {
         this.trx = response.data;

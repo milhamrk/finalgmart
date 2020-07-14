@@ -78,7 +78,7 @@ export default {
   },
   methods: {
     loadData() {
-      $axios.get("http://localhost:8000/api/kota").then(response => {
+      $axios.get("http://localhost:8000/api/kotaadmin").then(response => {
         this.kota = response.data;
       });
     },

@@ -128,7 +128,7 @@ $(document).ready(function(){
 $(window).on("load",function(){
 	window.setTimeout(function(){
 		$.toast({
-			heading: 'Selamat datang di G-Mart',
+			heading: 'Selamat datang di KiosRakyat',
 			text: 'Anda dapat melihat fitur selengkapnya dibar kiri.',
 			position: 'bottom-right',
 			loaderBg:'#e8af48',

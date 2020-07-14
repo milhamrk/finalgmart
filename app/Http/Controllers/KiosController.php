@@ -20,6 +20,13 @@ class KiosController extends Controller
         return Kota::all();
     }
 
+    public function kotaAdmin()
+    {
+        return Kota::whereNotIn('id_city',function($query) {
+            $query->select('province_id as id_city')->from('admins');
+        })->get();
+    }
+
     public function show($id)
     {
         return Kios::find($id);
@@ -27,9 +34,9 @@ class KiosController extends Controller
 
     public function store(Request $request)
     {
-        $maps = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?&address='.urlencode($request->alamat).'&key=AIzaSyAruPOCL0ke9sDt5Dq7hUqJxoJpU4K5mfo');
+        $maps = file_get_contents('http://api.positionstack.com/v1/forward?query='.urlencode($request->alamat).'&access_key=2ccde9534b05e1884f500fe30aba0c53');
         $json = json_decode($maps, true);
-        if($json['status']!="ZERO_RESULTS"){
+        if(empty($json['data'])){
             $kios = new Kios;
             $kios->nama_pemilik = $request->nama_pemilik;
             $kios->nama_kios = $request->nama_kios;
@@ -37,15 +44,15 @@ class KiosController extends Controller
             $kios->no_hp = $request->no_hp;
             $kios->alamat = $request->alamat;
             $kios->status_buka = $request->status_buka;
-            $kios->longitude = $json['results'][0]['geometry']['location']['lng'];
-            $kios->latitude = $json['results'][0]['geometry']['location']['lat'];
+            $kios->longitude = $json['data'][0]['latitude'];
+            $kios->latitude = $json['data'][0]['longitude'];
             $kios->status_buka = $request->status_buka;
             $kios->id_city = $request->id_city;
             $kios->save();
             return $kios;
         }else{
             $kota = Kota::find($request->id_city);
-            $kotas = json_decode(file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?&address='.urlencode($kota->city_name).'&key=AIzaSyAruPOCL0ke9sDt5Dq7hUqJxoJpU4K5mfo'), true);
+            $kotas = json_decode(file_get_contents('http://api.positionstack.com/v1/forward?query='.urlencode($request->alamat).'&access_key=2ccde9534b05e1884f500fe30aba0c53'), true);
             $kios = new Kios;
             $kios->nama_pemilik = $request->nama_pemilik;
             $kios->nama_kios = $request->nama_kios;
@@ -53,8 +60,8 @@ class KiosController extends Controller
             $kios->no_hp = $request->no_hp;
             $kios->alamat = $request->alamat;
             $kios->status_buka = $request->status_buka;
-            $kios->longitude = $kotas['results'][0]['geometry']['location']['lng'];
-            $kios->latitude = $kotas['results'][0]['geometry']['location']['lat'];
+            $kios->longitude = $json['data'][0]['latitude'];
+            $kios->latitude = $json['data'][0]['longitude'];
             $kios->status_buka = $request->status_buka;
             $kios->id_city = $request->id_city;
             $kios->save();
@@ -69,9 +76,9 @@ class KiosController extends Controller
 
     public function update($id, Request $request)
     {
-        $maps = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?&address='.urlencode($request->alamat).'&key=AIzaSyAruPOCL0ke9sDt5Dq7hUqJxoJpU4K5mfo');
+        $maps = file_get_contents('http://api.positionstack.com/v1/forward?query='.urlencode($request->alamat).'&access_key=2ccde9534b05e1884f500fe30aba0c53');
         $json = json_decode($maps, true);
-        if($json['status']!="ZERO_RESULTS"){
+        if(empty($json['data'])){
             $kios = Kios::find($id);
             $kios->nama_pemilik = $request->nama_pemilik;
             $kios->nama_kios = $request->nama_kios;
@@ -79,15 +86,15 @@ class KiosController extends Controller
             $kios->no_hp = $request->no_hp;
             $kios->alamat = $request->alamat;
             $kios->status_buka = $request->status_buka;
-            $kios->longitude = $json['results'][0]['geometry']['location']['lng'];
-            $kios->latitude = $json['results'][0]['geometry']['location']['lat'];
+            $kios->longitude = $json['data'][0]['latitude'];
+            $kios->latitude = $json['data'][0]['longitude'];
             $kios->status_buka = $request->status_buka;
             $kios->id_city = $request->id_city;
             $kios->save();
             return $kios;
         }else{
             $kota = Kota::find($request->id_city);
-            $kotas = json_decode(file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?&address='.urlencode($kota->city_name).'&key=AIzaSyAruPOCL0ke9sDt5Dq7hUqJxoJpU4K5mfo'), true);
+            $kotas = json_decode(file_get_contents('http://api.positionstack.com/v1/forward?query='.urlencode($request->alamat).'&access_key=2ccde9534b05e1884f500fe30aba0c53'), true);
             $kios = Kios::find($id);
             $kios->nama_pemilik = $request->nama_pemilik;
             $kios->nama_kios = $request->nama_kios;
@@ -95,8 +102,8 @@ class KiosController extends Controller
             $kios->no_hp = $request->no_hp;
             $kios->alamat = $request->alamat;
             $kios->status_buka = $request->status_buka;
-            $kios->longitude = $kotas['results'][0]['geometry']['location']['lng'];
-            $kios->latitude = $kotas['results'][0]['geometry']['location']['lat'];
+            $kios->longitude = $json['data'][0]['latitude'];
+            $kios->latitude = $json['data'][0]['longitude'];
             $kios->status_buka = $request->status_buka;
             $kios->id_city = $request->id_city;
             $kios->save();

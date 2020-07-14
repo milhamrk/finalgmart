@@ -13,7 +13,7 @@
                                         <label class="control-label mb-10">Barang</label>
                                         <select class="form-control select2" v-model="form.idBarang" required>
                                             <option disabled value="">Pilih Barang</option>
-                                            <option :value="t.id_produkkoperasi" v-for="(t, i) in barangs" :key="i">{{ t.merk }} {{ t.nama_produk }} (Rp {{ t.harga_koperasi.toLocaleString() }})</option>
+                                            <option :value="t.id_produkkoperasi" v-for="(t, i) in barangs" :key="i">{{ t.merk }} {{ t.nama_produk }}</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -69,6 +69,7 @@ export default {
     loadData() {
       $axios.get("http://localhost:8000/api/produk").then(response => {
         this.barangs = response.data;
+        console.log(this.barangs[0].harga_koperasi);
       });
     },
     addData() {

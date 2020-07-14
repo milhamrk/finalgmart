@@ -25,7 +25,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label mb-10">Gambar</label>
-                                        <input type="file" id="firstName" class="dropify" v-on:change="onImageChange" required>
+                                        <input type="file" id="firstName" class="dropify" v-on:change="onImageChange" accept=".png, .jpg, .jpeg" required>
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -115,7 +115,15 @@ export default {
         });
     },
     onImageChange(e){
-        this.form.image = e.target.files[0];
+        var fileName = e.target.value;
+        var idxDot = fileName.lastIndexOf(".") + 1;
+        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+        if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
+            this.form.image = e.target.files[0];
+        }else{
+            alert("Maaf hanya gambar JPG, JPEG, dan PNG yang diizinkan!");
+            this.form.image = "";
+        }   
     },
   }
 };

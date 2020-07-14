@@ -41,7 +41,7 @@ class ProdukKontroller extends Controller
                          $join->on('stok.id_produkkoperasi', '=', 'produk_koperasi.id_produkkoperasi');
                          $join->where('stok.id_admin', '=', $city->id);
                      })
-                    ->select('produk_koperasi.nama_produk','produk_koperasi.id_produkkoperasi','produk_koperasi.merk','produk_koperasi.gambar','produk_kios.stok','kategori.nama_kategori', 'produk_kios.harga as harga_jual', 'stok.harga_koperasi')
+                    ->select('produk_koperasi.nama_produk','produk_koperasi.id_produkkoperasi','produk_koperasi.merk','produk_koperasi.gambar','produk_kios.stok','kategori.nama_kategori', 'produk_kios.harga as harga_jual', 'stok.harga_koperasi as harga_koperasi')
                     ->get();
         }
         
