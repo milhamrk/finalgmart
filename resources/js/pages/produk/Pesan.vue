@@ -67,7 +67,7 @@ export default {
   },
   methods: {
     loadData() {
-      $axios.get("http://localhost:8000/api/produk").then(response => {
+      $axios.get("https://management.kiosrakyat.co.id/api/produk").then(response => {
         this.barangs = response.data;
         console.log(this.barangs[0].harga_koperasi);
       });
@@ -78,7 +78,7 @@ export default {
         formData.append('id_produkkoperasi', this.form.idBarang);
         formData.append('stok', this.form.stok);
 
-        $axios.post('http://localhost:8000/api/pesan', formData)
+        $axios.post('https://management.kiosrakyat.co.id/api/pesan', formData)
         .then(function (response) {
             router.push("/produk")
         });

@@ -46,7 +46,7 @@ export default {
   methods: {
     addData() {
       $axios
-        .post("http://localhost:8000/api/kategori", {
+        .post("https://management.kiosrakyat.co.id/api/kategori", {
           nama_kategori: this.form.namaKategori
         })
         .then(response => {

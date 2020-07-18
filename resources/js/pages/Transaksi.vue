@@ -250,7 +250,7 @@ export default {
       return moment(date).format('DD MMMM YYYY');
     },
     loadData() {
-      $axios.get("http://localhost:8000/api/trx").then(response => {
+      $axios.get("https://management.kiosrakyat.co.id/api/trx").then(response => {
         this.trx = response.data;
       });
     },

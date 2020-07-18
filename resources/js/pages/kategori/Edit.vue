@@ -49,14 +49,14 @@ export default {
   methods: {
     loadData() {
       $axios
-        .get("http://localhost:8000/api/kategori/" + this.$route.params.id)
+        .get("https://management.kiosrakyat.co.id/api/kategori/" + this.$route.params.id)
         .then(response => {
           this.form.namaKategori = response.data.nama_kategori;
         });
     },
     updateData() {
       $axios
-        .put("http://localhost:8000/api/kategori/" + this.$route.params.id, {
+        .put("https://management.kiosrakyat.co.id/api/kategori/" + this.$route.params.id, {
           nama_kategori: this.form.namaKategori,
         })
         .then(response => {

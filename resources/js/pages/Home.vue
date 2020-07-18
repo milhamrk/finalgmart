@@ -126,7 +126,7 @@
             <div class="container pt-30">
 				<!-- Row -->
 				<div class="row">
-					<div class="col-sm-8">
+					<div class="col-sm-12">
 						<div class="row">
 							<div class="col-sm-6 col-xs-12">
 								<div class="panel panel-default card-view pa-0">
@@ -230,30 +230,7 @@
 					<div class="col-sm-4">
 						<div class="row">
 							
-							<div class="col-sm-12 col-xs-12">
-								<div class="panel panel-default border-panel card-view panel-refresh">
-									<div class="refresh-container">
-										<div class="la-anim-1"></div>
-									</div>
-									<div class="panel-heading">
-										<div class="pull-left">
-											<h6 class="panel-title txt-dark">Statistik Transaksi (Bulan)</h6>
-										</div>
-									</div>
-									<div class="panel-wrapper collapse in">
-										<div class="panel-body">
-											<div v-for="k in kios" :key="k.id_kios" class="label-chatrs">
-											<hr class="light-grey-hr row mt-10 mb-15"/>
-												<div class="">
-													<span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">{{ k.nama_kios }}</span><span class="block txt-grey">356 transaksi</span></span>
-													<div class="pull-right"><span class="font-18">44.46%</span></div>
-													<div class="clearfix"></div>
-												</div>
-											</div>
-										</div>	
-									</div>
-								</div>
-							</div>	
+							
 						</div>
 					</div>
 				</div>
@@ -334,16 +311,16 @@
 	    },
 	    methods: {
 	    	loadData() {
-		      $axios.get("http://localhost:8000/api/grafis").then(response => {
+		      $axios.get("https://management.kiosrakyat.co.id/api/grafis").then(response => {
 		        this.graph = response.data;
 		      });
-		      $axios.get("http://localhost:8000/api/kios").then(response => {
+		      $axios.get("https://management.kiosrakyat.co.id/api/kios").then(response => {
 		        this.kios = response.data;
 		      });
-		      $axios.get("http://localhost:8000/api/kiosCount").then(response => {
+		      $axios.get("https://management.kiosrakyat.co.id/api/kiosCount").then(response => {
 		        this.kiosCount = response.data;
 		      });
-		      $axios.get("http://localhost:8000/api/transaksiCount").then(response => {
+		      $axios.get("https://management.kiosrakyat.co.id/api/transaksiCount").then(response => {
 		        this.transaksiCount = response.data;
 		      });
 		    },

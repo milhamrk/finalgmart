@@ -106,10 +106,10 @@ export default {
   },
   methods: {
     loadData() {
-      $axios.get("http://localhost:8000/api/kota").then(response => {
+      $axios.get("https://management.kiosrakyat.co.id/api/kota").then(response => {
         this.kota = response.data;
       });
-      $axios.get("http://localhost:8000/api/kios/" + this.$route.params.id).then(response => {
+      $axios.get("https://management.kiosrakyat.co.id/api/kios/" + this.$route.params.id).then(response => {
         this.form.namaKios = response.data.nama_kios;
         this.form.statusBuka = response.data.status_buka;
         this.form.alamat = response.data.alamat;
@@ -121,7 +121,7 @@ export default {
     },
     addData() {
       $axios
-        .put("http://localhost:8000/api/kios/" + this.$route.params.id, {
+        .put("https://management.kiosrakyat.co.id/api/kios/" + this.$route.params.id, {
           nama_kios: this.form.namaKios,
           nama_pemilik: this.form.namaPemilik,
           status_buka: this.form.statusBuka,

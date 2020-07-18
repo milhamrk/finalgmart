@@ -80,10 +80,10 @@ export default {
   },
   methods: {
     loadData() {
-      $axios.get("http://localhost:8000/api/kota").then(response => {
+      $axios.get("https://management.kiosrakyat.co.id/api/kota").then(response => {
         this.kota = response.data;
       });
-      $axios.get("http://localhost:8000/api/admin/" + this.$route.params.id).then(response => {
+      $axios.get("https://management.kiosrakyat.co.id/api/admin/" + this.$route.params.id).then(response => {
         this.form.nama = response.data.name;
         this.form.email = response.data.email;
         this.form.idKota = response.data.province_id;
@@ -91,7 +91,7 @@ export default {
     },
     addData() {
       $axios
-        .put("http://localhost:8000/api/admin/" + this.$route.params.id, {
+        .put("https://management.kiosrakyat.co.id/api/admin/" + this.$route.params.id, {
           name: this.form.nama,
           email: this.form.email,
           password: this.form.password,

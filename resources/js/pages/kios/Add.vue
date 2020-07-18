@@ -107,13 +107,13 @@ export default {
   },
   methods: {
     loadData() {
-      $axios.get("http://localhost:8000/api/kota").then(response => {
+      $axios.get("https://management.kiosrakyat.co.id/api/kota").then(response => {
         this.kota = response.data;
       });
     },
     addData() {
       $axios
-        .post("http://localhost:8000/api/kios", {
+        .post("https://management.kiosrakyat.co.id/api/kios", {
           nama_kios: this.form.namaKios,
           nama_pemilik: this.form.namaPemilik,
           status_buka: this.form.statusBuka,
@@ -123,7 +123,7 @@ export default {
           id_city: this.form.kotaId
         })
         .then(response => {
-          $axios.get("http://localhost:8000/api/kiosAdmin/"+this.form.kotaId).then(responses => {
+          $axios.get("https://management.kiosrakyat.co.id/api/kiosAdmin/"+this.form.kotaId).then(responses => {
             this.$store.dispatch('conversations/seed', { 
                     adminUser: responses.data,
                     emailUser: this.form.email,

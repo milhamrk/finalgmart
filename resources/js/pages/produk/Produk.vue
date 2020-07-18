@@ -22,7 +22,7 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="produk in produks" :key="produk.id_produkkoperasi">
-                                        <td><img v-bind:src="`/images/${produk.gambar}`" alt="`${produk.nama_produk}`" height="80"></td>
+                                        <td><img v-bind:src="`http://gmart.vokasidev.com/api/images/produk/${produk.gambar}`" alt="`${produk.nama_produk}`" height="80"></td>
                                         <td>{{produk.nama_kategori}}</td>
                                         <td>{{produk.merk}}</td>
                                         <td>{{produk.nama_produk}}</td>
@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     loadData() {
-      $axios.get("http://localhost:8000/api/produk").then(response => {
+      $axios.get("https://management.kiosrakyat.co.id/api/produk").then(response => {
         this.produks = response.data;
       });
     },
@@ -86,7 +86,7 @@ export default {
                 confirmButtonText: 'Iya, Lanjutkan!'
             }).then((result) => {
                 if (result.value) {
-                    $axios.delete("http://localhost:8000/api/produk/" + id).then(response => {
+                    $axios.delete("https://management.kiosrakyat.co.id/api/produk/" + id).then(response => {
                     this.loadData();
                   });
                 }

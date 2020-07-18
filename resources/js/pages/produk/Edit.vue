@@ -84,13 +84,13 @@ export default {
   },
   methods: {
     loadData() {
-      $axios.get("http://localhost:8000/api/produk/" + this.$route.params.id).then(response => {
+      $axios.get("https://management.kiosrakyat.co.id/api/produk/" + this.$route.params.id).then(response => {
         this.form.merk = response.data.merk;
         this.form.varian = response.data.nama_produk;
         this.form.harga = response.data.harga_koperasi;
         this.form.kategori = response.data.id_kategori;
       });
-      $axios.get("http://localhost:8000/api/kategori").then(response => {
+      $axios.get("https://management.kiosrakyat.co.id/api/kategori").then(response => {
         this.kategoris = response.data;
       });
     },
@@ -112,7 +112,7 @@ export default {
           formData.append('gambar', this.form.image);
         }
 
-        axios.post('http://localhost:8000/api/produk/' + this.$route.params.id, formData, config)
+        axios.post('https://management.kiosrakyat.co.id/api/produk/' + this.$route.params.id, formData, config)
         .then(function (response) {
             router.push("/produk")
         })
