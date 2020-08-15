@@ -311,16 +311,19 @@
 	    },
 	    methods: {
 	    	loadData() {
-		      $axios.get("https://management.kiosrakyat.co.id/api/grafis").then(response => {
+	    	  $axios.get("http://localhost:8000/api/jobs").then(response => {
+		        // console.log(response.data);
+		      });
+		      $axios.get("http://localhost:8080/api/grafis").then(response => {
 		        this.graph = response.data;
 		      });
-		      $axios.get("https://management.kiosrakyat.co.id/api/kios").then(response => {
+		      $axios.get("http://localhost:8080/api/kios").then(response => {
 		        this.kios = response.data;
 		      });
-		      $axios.get("https://management.kiosrakyat.co.id/api/kiosCount").then(response => {
+		      $axios.get("http://localhost:8080/api/kiosCount").then(response => {
 		        this.kiosCount = response.data;
 		      });
-		      $axios.get("https://management.kiosrakyat.co.id/api/transaksiCount").then(response => {
+		      $axios.get("http://localhost:8080/api/transaksiCount").then(response => {
 		        this.transaksiCount = response.data;
 		      });
 		    },
