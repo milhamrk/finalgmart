@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     loadData() {
-      $axios.get("https://management.kiosrakyat.co.id/api/produk").then(response => {
+      $axios.get("/api/produk").then(response => {
         this.produks = response.data;
       });
     },
@@ -86,7 +86,7 @@ export default {
                 confirmButtonText: 'Iya, Lanjutkan!'
             }).then((result) => {
                 if (result.value) {
-                    $axios.delete("https://management.kiosrakyat.co.id/api/produk/" + id).then(response => {
+                    $axios.delete("/api/produk/" + id).then(response => {
                     this.loadData();
                   });
                 }

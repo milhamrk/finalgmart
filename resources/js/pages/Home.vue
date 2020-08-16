@@ -311,19 +311,19 @@
 	    },
 	    methods: {
 	    	loadData() {
-	    	  $axios.get("http://localhost:8000/api/jobs").then(response => {
+	    	  $axios.get("/api/jobs").then(response => {
 		        // console.log(response.data);
 		      });
-		      $axios.get("http://localhost:8080/api/grafis").then(response => {
+		      $axios.get("/api/grafis").then(response => {
 		        this.graph = response.data;
 		      });
-		      $axios.get("http://localhost:8080/api/kios").then(response => {
+		      $axios.get("/api/kios").then(response => {
 		        this.kios = response.data;
 		      });
-		      $axios.get("http://localhost:8080/api/kiosCount").then(response => {
+		      $axios.get("/api/kiosCount").then(response => {
 		        this.kiosCount = response.data;
 		      });
-		      $axios.get("http://localhost:8080/api/transaksiCount").then(response => {
+		      $axios.get("/api/transaksiCount").then(response => {
 		        this.transaksiCount = response.data;
 		      });
 		    },

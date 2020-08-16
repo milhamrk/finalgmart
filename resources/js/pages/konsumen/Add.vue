@@ -72,7 +72,7 @@ export default {
   methods: {
     addData() {
       $axios
-        .post("https://management.kiosrakyat.co.id/api/konsumen", {
+        .post("/api/konsumen", {
           nama: this.form.nama,
           email: this.form.email,
           no_hp: this.form.noHp,

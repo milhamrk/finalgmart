@@ -86,7 +86,7 @@ export default {
   },
   methods: {
     loadData() {
-      $axios.get("https://management.kiosrakyat.co.id/api/kategori").then(response => {
+      $axios.get("/api/kategori").then(response => {
         this.kategoris = response.data;
       });
     },
@@ -106,7 +106,7 @@ export default {
         formData.append('id_kategori', this.form.kategori);
         formData.append('gambar', this.form.image);
 
-        axios.post('https://management.kiosrakyat.co.id/api/produk', formData, config)
+        axios.post('/api/produk', formData, config)
         .then(function (response) {
             router.push("/produk")
         })

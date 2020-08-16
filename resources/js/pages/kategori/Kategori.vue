@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     loadData() {
-      $axios.get("https://management.kiosrakyat.co.id/api/kategori").then(response => {
+      $axios.get("/api/kategori").then(response => {
         this.kategoris = response.data;
       });
     },
@@ -71,7 +71,7 @@ export default {
                 confirmButtonText: 'Iya, Lanjutkan!'
             }).then((result) => {
                 if (result.value) {
-                    $axios.delete("https://management.kiosrakyat.co.id/api/kategori/" + id).then(response => {
+                    $axios.delete("/api/kategori/" + id).then(response => {
                     this.loadData();
                   });
                 }

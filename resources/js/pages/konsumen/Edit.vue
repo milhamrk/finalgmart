@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     loadData() {
-      $axios.get("https://management.kiosrakyat.co.id/api/konsumen/" + this.$route.params.id).then(response => {
+      $axios.get("/api/konsumen/" + this.$route.params.id).then(response => {
         this.form.nama = response.data.nama;
         this.form.email = response.data.email;
         this.form.noHp = response.data.no_hp;
@@ -85,7 +85,7 @@ export default {
     },
     addData() {
       $axios
-        .put("https://management.kiosrakyat.co.id/api/konsumen/" + this.$route.params.id, {
+        .put("/api/konsumen/" + this.$route.params.id, {
           nama: this.form.nama,
           email: this.form.email,
           no_hp: this.form.noHp,
