@@ -80,10 +80,10 @@ export default {
   },
   methods: {
     loadData() {
-      $axios.get("/api/kota").then(response => {
+      $axios.get("/kota").then(response => {
         this.kota = response.data;
       });
-      $axios.get("/api/admin/" + this.$route.params.id).then(response => {
+      $axios.get("/admin/" + this.$route.params.id).then(response => {
         this.form.nama = response.data.name;
         this.form.email = response.data.email;
         this.form.idKota = response.data.province_id;
@@ -91,7 +91,7 @@ export default {
     },
     addData() {
       $axios
-        .put("/api/admin/" + this.$route.params.id, {
+        .put("/admin/" + this.$route.params.id, {
           name: this.form.nama,
           email: this.form.email,
           password: this.form.password,

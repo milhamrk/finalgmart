@@ -78,13 +78,13 @@ export default {
   },
   methods: {
     loadData() {
-      $axios.get("/api/kotaadmin").then(response => {
+      $axios.get("/kotaadmin").then(response => {
         this.kota = response.data;
       });
     },
     addData() {
       $axios
-        .post("/api/admin", {
+        .post("/admin", {
           name: this.form.nama,
           email: this.form.email,
           password: this.form.password,

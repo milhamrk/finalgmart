@@ -49,14 +49,14 @@ export default {
   methods: {
     loadData() {
       $axios
-        .get("/api/kategori/" + this.$route.params.id)
+        .get("/kategori/" + this.$route.params.id)
         .then(response => {
           this.form.namaKategori = response.data.nama_kategori;
         });
     },
     updateData() {
       $axios
-        .put("/api/kategori/" + this.$route.params.id, {
+        .put("/kategori/" + this.$route.params.id, {
           nama_kategori: this.form.namaKategori,
         })
         .then(response => {

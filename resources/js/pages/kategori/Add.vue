@@ -46,7 +46,7 @@ export default {
   methods: {
     addData() {
       $axios
-        .post("/api/kategori", {
+        .post("/kategori", {
           nama_kategori: this.form.namaKategori
         })
         .then(response => {

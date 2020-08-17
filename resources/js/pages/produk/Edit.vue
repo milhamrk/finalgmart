@@ -84,13 +84,13 @@ export default {
   },
   methods: {
     loadData() {
-      $axios.get("/api/produk/" + this.$route.params.id).then(response => {
+      $axios.get("/produk/" + this.$route.params.id).then(response => {
         this.form.merk = response.data.merk;
         this.form.varian = response.data.nama_produk;
         this.form.harga = response.data.harga_koperasi;
         this.form.kategori = response.data.id_kategori;
       });
-      $axios.get("/api/kategori").then(response => {
+      $axios.get("/kategori").then(response => {
         this.kategoris = response.data;
       });
     },
@@ -112,7 +112,7 @@ export default {
           formData.append('gambar', this.form.image);
         }
 
-        axios.post('/api/produk/' + this.$route.params.id, formData, config)
+        axios.post('/produk/' + this.$route.params.id, formData, config)
         .then(function (response) {
             router.push("/produk")
         })

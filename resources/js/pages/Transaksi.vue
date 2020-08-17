@@ -250,7 +250,7 @@ export default {
       return moment(date).format('DD MMMM YYYY');
     },
     loadData() {
-      $axios.get("/api/trx").then(response => {
+      $axios.get("/trx").then(response => {
         this.trx = response.data;
       });
     },

@@ -8,6 +8,7 @@
 	<meta name="keywords" content="gmart, dashboard, karyanto" />
 	<meta name="author" content="karyanto"/>
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta name="site" content="{{ url('/') }}">
 	
 	<!-- Favicon -->
 	<link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">

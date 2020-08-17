@@ -67,7 +67,7 @@ export default {
   },
   methods: {
     loadData() {
-      $axios.get("/api/produk").then(response => {
+      $axios.get("/produk").then(response => {
         this.barangs = response.data;
         console.log(this.barangs[0].harga_koperasi);
       });
@@ -78,7 +78,7 @@ export default {
         formData.append('id_produkkoperasi', this.form.idBarang);
         formData.append('stok', this.form.stok);
 
-        $axios.post('/api/pesan', formData)
+        $axios.post('/pesan', formData)
         .then(function (response) {
             router.push("/produk")
         });

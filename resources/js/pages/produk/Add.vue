@@ -86,7 +86,7 @@ export default {
   },
   methods: {
     loadData() {
-      $axios.get("/api/kategori").then(response => {
+      $axios.get("/kategori").then(response => {
         this.kategoris = response.data;
       });
     },
@@ -106,7 +106,7 @@ export default {
         formData.append('id_kategori', this.form.kategori);
         formData.append('gambar', this.form.image);
 
-        axios.post('/api/produk', formData, config)
+        axios.post('/produk', formData, config)
         .then(function (response) {
             router.push("/produk")
         })

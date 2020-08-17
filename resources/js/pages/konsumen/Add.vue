@@ -72,7 +72,7 @@ export default {
   methods: {
     addData() {
       $axios
-        .post("/api/konsumen", {
+        .post("/konsumen", {
           nama: this.form.nama,
           email: this.form.email,
           no_hp: this.form.noHp,

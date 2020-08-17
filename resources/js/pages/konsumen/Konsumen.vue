@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     loadData() {
-      $axios.get("/api/konsumen").then(response => {
+      $axios.get("/konsumen").then(response => {
         this.konsumen = response.data;
       });
     },
@@ -73,7 +73,7 @@ export default {
                 confirmButtonText: 'Iya, Lanjutkan!'
             }).then((result) => {
                 if (result.value) {
-                    $axios.delete("/api/konsumen/" + id).then(response => {
+                    $axios.delete("/konsumen/" + id).then(response => {
                     this.loadData();
                   });
                 }
