@@ -4,7 +4,7 @@
             <div class="panel-wrapper collapse in">
                 <div class="panel-body pt-0">
                     <div class="form-wrap">
-                        <form @submit.prevent="addData()" enctype="multipart/form-data">
+                        <form @submit.prevent="addData()" enctype="multipart/form-data" method="POST">
                             <h6 class="txt-dark flex flex-middle  capitalize-font"><i class="font-20 txt-grey zmdi zmdi-info-outline mr-10"></i>informasi</h6>
                             <hr class="light-grey-hr"/>
                             <div class="row">
@@ -106,7 +106,7 @@ export default {
         formData.append('id_kategori', this.form.kategori);
         formData.append('gambar', this.form.image);
 
-        axios.post('/produk', formData, config)
+        $axios.post('/produk', formData, config)
         .then(function (response) {
             router.push("/produk")
         })

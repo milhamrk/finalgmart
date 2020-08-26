@@ -112,7 +112,7 @@ export default {
           formData.append('gambar', this.form.image);
         }
 
-        axios.post('/produk/' + this.$route.params.id, formData, config)
+        $axios.post('/produk/' + this.$route.params.id, formData, config)
         .then(function (response) {
             router.push("/produk")
         })
