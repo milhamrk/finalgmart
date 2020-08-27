@@ -9,6 +9,8 @@ use App\Stok;
 use App\produk_kios;
 use File;
 use app\Admin;
+use App\Exports\ProdukKoperasiExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProdukKontroller extends Controller
 {
@@ -45,6 +47,12 @@ class ProdukKontroller extends Controller
                     ->get();
         }
         
+    }
+
+    public function export()
+    {
+        // dd(Produk::all());
+        return Excel::download(new ProdukKoperasiExport, 'produk.xlsx');
     }
 
     public function show($id)

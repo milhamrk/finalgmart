@@ -11,7 +11,9 @@
 |
 */
 
+Route::get('/produk/export', 'ProdukKontroller@export');
 Route::get('/{any}', 'FrontController@index')->where('any', '.*');
+
 
 // Route::get('/', function () {
 //     return view('welcome');

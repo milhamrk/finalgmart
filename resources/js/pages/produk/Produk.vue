@@ -3,8 +3,8 @@
         <div class="panel panel-default card-view">
             <div class="panel-wrapper collapse in">
                 <router-link v-if="role === '1'" :to="{ name: 'barang.add' }" class="btn btn-info">Tambah</router-link>
+                <a href="/produk/export" class="btn btn-info">Export</a>
                 <router-link v-if="role === '1'" :to="{ name: 'barang.add' }" class="btn btn-info">Import</router-link>
-                <router-link v-if="role === '1'" :to="{ name: 'barang.add' }" class="btn btn-info">Export</router-link>
                 <router-link v-else :to="{ name: 'barang.pesan' }" class="btn btn-info">Pesan Produk</router-link>
                 <div class="panel-body pt-0 row">
                     <div class="table-wrap">
