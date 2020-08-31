@@ -31,6 +31,7 @@ Route::group([['middleware' => ['auth:admin-api']],['middleware' => ['auth:kios-
 	Route::post('/harga','ProdukKontroller@harga');
 	Route::get('/produk/{id}','ProdukKontroller@show');
 	Route::post('/produk','ProdukKontroller@store');
+	Route::post('/produkExcel','ProdukKontroller@storeExcel');
 	Route::post('/produk/{id}','ProdukKontroller@update');
 	Route::delete('/produk/{id}','ProdukKontroller@delete');
 

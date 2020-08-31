@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const $axios = axios.create({
-    baseURL: 'http://management.kiosrakyat.co.id/api',
+    baseURL: '/api',
     headers: {
          Authorization: localStorage.getItem('token') != 'null' ? 'Bearer ' + localStorage.getItem('token'):'',
     'Content-Type': 'application/json'

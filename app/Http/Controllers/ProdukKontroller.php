@@ -8,8 +8,10 @@ use App\produk_koperasi as Produk;
 use App\Stok;
 use App\produk_kios;
 use File;
+use Storage;
 use app\Admin;
 use App\Exports\ProdukKoperasiExport;
+use App\Imports\ProdukKoperasiImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProdukKontroller extends Controller
@@ -51,8 +53,30 @@ class ProdukKontroller extends Controller
 
     public function export()
     {
-        // dd(Produk::all());
         return Excel::download(new ProdukKoperasiExport, 'produk.xlsx');
+    }
+
+    public function storeExcel(Request $request)
+    {
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        $file = $request->file('file');
+
+        $nama_file = $file->hashName();
+
+        $path = $file->storeAs('public/excel/',$nama_file);
+
+        $import = Excel::import(new ProdukKoperasiImport(), storage_path('app/public/excel/'.$nama_file));
+
+        Storage::delete($path);
+
+        if($import) {
+            return "success";
+        } else {
+            return "failed";
+        }
     }
 
     public function show($id)

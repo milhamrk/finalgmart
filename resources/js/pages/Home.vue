@@ -311,8 +311,6 @@
 	    },
 	    methods: {
 	    	loadData() {
-	    	  $axios.get("/jobs").then(response => {
-		      });
 		      $axios.get("/grafis").then(response => {
 		        this.graph = response.data;
 		      });
