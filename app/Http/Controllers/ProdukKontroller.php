@@ -13,6 +13,7 @@ use app\Admin;
 use App\Exports\ProdukKoperasiExport;
 use App\Imports\ProdukKoperasiImport;
 use Maatwebsite\Excel\Facades\Excel;
+use GuzzleHttp\Client;
 
 class ProdukKontroller extends Controller
 {
@@ -114,9 +115,19 @@ class ProdukKontroller extends Controller
         $id = time();
         $imageName = $id.'.'.$request->gambar->getClientOriginalExtension();
         $request->gambar->move(public_path('images'), $imageName);
+        $client = new Client();
+        $res = $client->request('POST', 'https://gmart.vokasidev.com/api/t0.php', [
+            'multipart' => [
+                [
+                    'name'     => 'file',
+                    'contents' => file_get_contents(public_path('images')."/".$imageName),
+                    'filename' => $imageName
+                ]
+            ]
+        ]);
         $produk = Produk::create([
             'id_produkkoperasi' => $id,
-            'gambar' => $imageName,  
+            'gambar' => $res->getBody(),  
             'merk' => $request->merk,     
             'harga_koperasi' => $request->harga_koperasi,     
             'nama_produk' => $request->nama_produk,     
