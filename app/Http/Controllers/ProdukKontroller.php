@@ -210,9 +210,20 @@ class ProdukKontroller extends Controller
             $image_path = "/images/".$produk->gambar;
             if(File::exists($image_path)) {
                 File::delete($image_path);
-                $imageName = $id.'.'.$request->gambar->getClientOriginalExtension();
-                $request->gambar->move(public_path('images'), $imageName);
             }
+            $imageName = $id.'.'.$request->gambar->getClientOriginalExtension();
+            $request->gambar->move(public_path('images'), $imageName);
+            $client = new Client();
+            $res = $client->request('POST', 'https://gmart.vokasidev.com/api/t0.php', [
+                'multipart' => [
+                    [
+                        'name'     => 'file',
+                        'contents' => file_get_contents(public_path('images')."/".$imageName),
+                        'filename' => $imageName
+                    ]
+                ]
+            ]);
+            $imageName = $res->getBody();
         }
         $produk->gambar = $imageName;
         $produk->merk = $request->merk;

@@ -26,6 +26,7 @@ import AddProduk from './pages/produk/Add.vue'
 import PesanProduk from './pages/produk/Pesan.vue'
 import EditProduk from './pages/produk/Edit.vue'
 import HargaProduk from './pages/produk/Harga.vue'
+import ImportProduk from './pages/produk/Import.vue'
 
 // Kios
 import IndexKios from './pages/kios/Index.vue'
@@ -115,6 +116,12 @@ const router = new Router({
                     name: 'barang.add',
                     component: AddProduk,
                     meta: { title: 'Add New Produk' }
+                },
+                {
+                    path: 'import',
+                    name: 'barang.import',
+                    component: ImportProduk,
+                    meta: { title: 'Import Produk' }
                 },
                 {
                     path: 'edit/:id',
